@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
+using UnityEngine.XR.Interaction.Toolkit;
 using RvCulturas.Presentation.UI;
 
 namespace RvCulturas.Presentation.Interaction
@@ -43,6 +45,8 @@ namespace RvCulturas.Presentation.Interaction
                 {
                     var movement = origin.GetComponent<DesktopSimulationLocomotion>() ?? origin.AddComponent<DesktopSimulationLocomotion>();
                     movement.Configure(origin.transform, camera.transform);
+                    var simulator = origin.GetComponent<XRInteractionSimulator>();
+                    if (simulator != null && UnityEngine.Application.isEditor) simulator.enabled = false;
                 }
 
                 var ray = Object.FindFirstObjectByType<XRRayInteractor>();
@@ -51,7 +55,11 @@ namespace RvCulturas.Presentation.Interaction
                     ray.transform.SetParent(camera.transform, false);
                     ray.transform.localPosition = new Vector3(0.12f, -0.08f, 0.1f);
                     ray.transform.localRotation = Quaternion.identity;
+                    var controller = ray.GetComponent<ActionBasedController>();
+                    if (controller != null && UnityEngine.Application.isEditor) controller.enabled = false;
                 }
+                var direct = Object.FindFirstObjectByType<XRDirectInteractor>();
+                if (direct != null && UnityEngine.Application.isEditor) direct.enabled = false;
             }
         }
 
@@ -61,7 +69,7 @@ namespace RvCulturas.Presentation.Interaction
             if (target == null) return;
             var renderer = target.GetComponent<Renderer>();
             if (renderer == null) return;
-            var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
+            var shader = Shader.Find("Sprites/Default") ?? Shader.Find("Unlit/Color");
             var material = new Material(shader) { color = color };
             if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
             renderer.material = material;

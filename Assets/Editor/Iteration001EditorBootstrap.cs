@@ -276,7 +276,7 @@ public static class Iteration001EditorBootstrap
         gameObject.transform.position = position;
         gameObject.transform.localScale = scale;
         var renderer = gameObject.GetComponent<Renderer>();
-        var shader = Shader.Find("Universal Render Pipeline/Unlit") ?? Shader.Find("Standard");
+        var shader = Shader.Find("Sprites/Default") ?? Shader.Find("Unlit/Color");
         var material = new Material(shader) { color = color };
         if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
         renderer.sharedMaterial = material;

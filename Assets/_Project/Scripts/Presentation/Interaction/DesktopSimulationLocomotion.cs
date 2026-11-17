@@ -36,11 +36,21 @@ namespace RvCulturas.Presentation.Interaction
                 rig.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.Self);
 
             var mouse = Mouse.current;
-            if (mouse == null || !mouse.rightButton.isPressed) return;
-            var delta = mouse.delta.ReadValue() * lookSensitivity;
-            rig.Rotate(Vector3.up, delta.x, Space.World);
-            pitch = Mathf.Clamp(pitch - delta.y, -45f, 45f);
-            view.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+            if (mouse == null) return;
+            if (mouse.rightButton.isPressed)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                var delta = mouse.delta.ReadValue() * lookSensitivity;
+                rig.Rotate(Vector3.up, delta.x, Space.World);
+                pitch = Mathf.Clamp(pitch - delta.y, -45f, 45f);
+                view.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace RvCulturas.Presentation.UI
 
         public void Present(string title, string explanation, string sourceReference)
         {
-            if (panel != null) panel.SetActive(true);
+            if (!DesktopSimulationHelpOverlay.IsActive && panel != null) panel.SetActive(true);
             if (textMesh != null) textMesh.text = title + "\n" + explanation + "\nFuente: " + sourceReference + "\n[Cerrar contexto]";
             DesktopSimulationHelpOverlay.PublishContext(title + ": " + explanation + " Fuente: " + sourceReference);
         }
