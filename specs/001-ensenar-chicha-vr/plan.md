@@ -57,6 +57,11 @@ usuaria por sesión.
 
 No hay violaciones ni excepciones de la constitución en la fase de investigación.
 
+**Reevaluación posterior al diseño (2026-11-17)**: PASS. El modelo de datos separa contenido
+de estado de sesión; el contrato de ejecución mantiene a Unity y XR en Presentation; el contrato
+de autoría bloquea contenido cultural no revisado; y quickstart exige pruebas automatizadas,
+accesibilidad sin audio y perfilado en visor antes de aceptar la iteración.
+
 ## Project Structure
 
 ### Documentation (this feature)
@@ -72,12 +77,6 @@ specs/001-ensenar-chicha-vr/
 ```
 
 ### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
 
 ```text
 Assets/
@@ -112,6 +111,20 @@ specs/
 entidades y reglas C# puras; `Application` orquesta casos de uso; `Infrastructure` adapta carga
 de activos y fuentes; `Presentation` contiene MonoBehaviours, XR, UI y composición de escena.
 Los recursos de Blender se conservan con su procedencia y licencia fuera de la lógica de negocio.
+
+## Iteration Delivery Plan
+
+| Hito | Objetivo | Resultado verificable | Commit esperado |
+| --- | --- | --- | --- |
+| 1. Fundación Unity | Crear el proyecto Unity, paquetes estables y estructura de carpetas. | El proyecto abre sin errores, el simulador XR funciona y la escena base carga. | `chore: initialize Unity XR foundation` |
+| 2. Contenido y greybox | Crear la ExperienceDefinition de borrador y una estación con ingrediente, recipiente y utensilio provisionales. | Los recursos cumplen el contrato de entrada y el contenido se valida sin fuentes publicables pendientes. | `feat: add iteration 001 greybox content` |
+| 3. Núcleo del recorrido | Implementar dominio, aplicación y pruebas Edit Mode para secuencia, pausa, reinicio y acciones inválidas. | Las pruebas de reglas pasan sin requerir Unity ni visor. | `feat: implement guided preparation domain` |
+| 4. Interacción XR | Conectar Presentation al contrato de ejecución y habilitar interacción directa y a distancia en el simulador. | V-001 a V-004 pasan en el Editor. | `feat: add XR preparation interaction` |
+| 5. Inclusión y contexto | Añadir guías visuales/textuales, consulta de contenido cultural y equivalencias para audio. | El recorrido se completa con audio desactivado y no usa color como única señal. | `feat: add accessible learning guidance` |
+| 6. Validación de aceptación | Ejecutar pruebas Play Mode, prueba en visor, perfilado, revisión cultural y prueba con el grupo prioritario. | V-001 a V-005 pasan y la evidencia se registra conforme a quickstart. | `test: validate iteration 001 in headset` |
+
+Cada hito se documenta en su commit y debe incluir las pruebas o evidencia aplicables. Si un hito
+no puede validarse, el commit debe registrar el bloqueo y no declarar la Iteración 001 aceptada.
 
 ## Complexity Tracking
 
