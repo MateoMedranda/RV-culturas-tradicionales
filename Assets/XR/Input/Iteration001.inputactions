@@ -1,0 +1,22 @@
+{
+  "name": "Iteration001",
+  "maps": [
+    {
+      "name": "Experience",
+      "id": "4d3d42ee-4ab3-4f96-b04a-71d36c7ec900",
+      "actions": [
+        { "name": "Start", "type": "Button", "id": "5e0f043d-10de-4ca0-b0d8-5de667a066ba", "expectedControlType": "Button" },
+        { "name": "Pause", "type": "Button", "id": "b04ba2a9-22b4-45f2-bc09-1dd8b92b6126", "expectedControlType": "Button" },
+        { "name": "Restart", "type": "Button", "id": "d69b8ab0-6b90-4829-9e76-4d8c960c7df6", "expectedControlType": "Button" },
+        { "name": "RepeatGuidance", "type": "Button", "id": "a4fb5790-45a9-46a3-9ed5-272caf7e5d51", "expectedControlType": "Button" }
+      ],
+      "bindings": [
+        { "name": "", "id": "2933e06d-a9d3-4479-a8d5-0ab7061a7cd4", "path": "<Keyboard>/space", "action": "Start", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "48c4e949-2802-4cd3-9fd6-fa282b0a65d4", "path": "<Keyboard>/p", "action": "Pause", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "cd2b9581-f477-4051-af3c-0eec6d0367e8", "path": "<Keyboard>/r", "action": "Restart", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "5a21bbf3-ecf9-4bbf-b4b7-6c9b2806c8a3", "path": "<Keyboard>/g", "action": "RepeatGuidance", "isComposite": false, "isPartOfComposite": false }
+      ]
+    }
+  ],
+  "controlSchemes": []
+}

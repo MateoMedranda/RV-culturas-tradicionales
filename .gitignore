@@ -11,13 +11,22 @@
 
 # IDE and operating-system files
 .vs/
+.vscode/
 .idea/
 *.csproj
 *.sln
 *.user
 *.userprefs
+*.suo
+*.tmp
+*.swp
 .DS_Store
 Thumbs.db
 
+# C# compilation artifacts
+/bin/
+/obj/
+
 # Local previews and temporary artifacts
 /tmp/
+/tmp-unity-*.log
