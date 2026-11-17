@@ -44,6 +44,7 @@ recetas adicionales ni una recreación exhaustiva de todas las variantes de chic
 - [Visión del producto](docs/PRODUCT_OVERVIEW.md)
 - [Arquitectura propuesta](docs/ARCHITECTURE.md)
 - [Guía del repositorio](docs/REPOSITORY_GUIDE.md)
+- [Informe del prototipo inclusivo](docs/INFORME_PROTOTIPO_INCLUSIVO.md)
 - [Fuentes y validación cultural](docs/SOURCES.md)
 
 ## Principios

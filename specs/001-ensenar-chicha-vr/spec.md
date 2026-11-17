@@ -72,6 +72,27 @@ puede continuar o volver al inicio sin estados confusos.
 2. **Given** que la persona necesita repetir el aprendizaje, **When** elige reiniciar,
    **Then** el recorrido vuelve a la introducción y no conserva progreso anterior.
 
+---
+
+### User Story 4 - Aprender sin depender del audio (Priority: P2)
+
+Una persona con discapacidad auditiva completa el recorrido mediante instrucciones, demostraciones
+y retroalimentación visual y textual, sin depender de una señal sonora para comprender o avanzar.
+
+**Why this priority**: El prototipo prioriza a adolescentes y jóvenes con discapacidad auditiva
+para reducir una barrera frecuente en materiales educativos basados en narración y sonido.
+
+**Independent Test**: Una persona puede completar el recorrido con el audio desactivado y recibe
+información suficiente para distinguir instrucciones, progreso y resultados de sus acciones.
+
+**Acceptance Scenarios**:
+
+1. **Given** que el audio está desactivado, **When** se presenta una instrucción esencial,
+   **Then** la persona recibe una alternativa visual y textual que permite realizar el paso.
+2. **Given** que una acción se completa o requiere corrección, **When** se muestra la
+   retroalimentación, **Then** esta comunica el resultado mediante texto o símbolo además de
+   cualquier sonido o color.
+
 ### Edge Cases
 
 - La persona intenta usar un elemento que no corresponde al paso activo.
@@ -103,6 +124,10 @@ puede continuar o volver al inicio sin estados confusos.
   presentarse como una práctica tradicional específica.
 - **FR-010**: El sistema MUST conservar el progreso solo durante la sesión activa; esta primera
   versión no requiere perfiles personales ni historial de visitantes.
+- **FR-011**: El sistema MUST ofrecer todas las instrucciones esenciales y la retroalimentación
+  de progreso en formatos visuales y textuales que permitan completar el recorrido sin audio.
+- **FR-012**: El sistema MUST permitir consultar de nuevo la instrucción del paso activo sin
+  penalizar el progreso ni obligar a reiniciar el recorrido.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -129,11 +154,16 @@ puede continuar o volver al inicio sin estados confusos.
   revisión de representación cultural antes de la prueba de aceptación.
 - **SC-005**: Una persona puede completar el recorrido inicial en 15 minutos o menos, excluyendo
   el tiempo que dedique voluntariamente a consultar explicaciones adicionales.
+- **SC-006**: Al menos el 80% de las personas del grupo prioritario que participa en la prueba
+  completa el recorrido con el audio desactivado y sin asistencia humana continua.
 
 ## Assumptions
 
 - La primera versión se centra en una variante de chicha tradicional vinculada a una comunidad
   amazónica ecuatoriana; la procedencia concreta y la secuencia se validarán antes de publicar.
+- El grupo prioritario del prototipo está formado por adolescentes y jóvenes con discapacidad
+  auditiva en contextos educativos o de difusión cultural; sus necesidades se validarán en las
+  pruebas de uso.
 - La experiencia se utiliza de forma individual y con acompañamiento opcional de un docente o
   facilitador.
 - Los modelos tridimensionales y recursos audiovisuales estarán disponibles con permisos de uso

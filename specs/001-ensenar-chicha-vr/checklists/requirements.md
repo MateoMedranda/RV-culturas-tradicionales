@@ -33,5 +33,6 @@
 
 ## Notes
 
-- Validation completed on 2026-11-16. The cultural source and review requirements are explicit;
-  the technical plan will determine implementation choices without changing this scope.
+- Validation completed on 2026-11-16. The selected priority group, accessibility criteria,
+  cultural source and review requirements are explicit; the technical plan will determine
+  implementation choices without changing this scope.
