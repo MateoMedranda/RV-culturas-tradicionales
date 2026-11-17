@@ -26,6 +26,19 @@ interacción.
 5. Si hay visor disponible, crear una Development Build e instalarla antes de ejecutar el bloque
    de validación en dispositivo.
 
+### Controles del simulador de escritorio
+
+Para revisar la escena en el Editor sin visor, primero ejecuta `RV Culturas > Generate Iteration
+001` después de que Unity termine de compilar. En Game View usa:
+
+- `W`, `A`, `S`, `D`: desplazarte por la estación.
+- Mantener clic derecho y mover el ratón: mirar alrededor.
+- Clic izquierdo sobre un elemento: seleccionarlo mediante el rayo XR.
+- `Espacio`: iniciar; `P`: pausar/reanudar; `G`: repetir guía; `R`: reiniciar; `C`: cerrar ficha cultural.
+
+Este movimiento solo se activa sin visor para probar en escritorio; no se aplica durante la
+experiencia con dispositivo XR.
+
 ## Escenarios de validación
 
 ### V-001: Inicio e instrucción accesible

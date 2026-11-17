@@ -126,43 +126,52 @@ public static class Iteration001EditorBootstrap
         inputActionManager.actionAssets = new List<InputActionAsset> { inputActions };
         var adapter = root.AddComponent<XrInteractionAdapter>();
         var camera = Camera.main;
+        camera.clearFlags = CameraClearFlags.SolidColor;
+        camera.backgroundColor = new Color(0.08f, 0.16f, 0.24f);
         var xrOriginObject = new GameObject("XR Origin (Simulation Ready)");
         var xrOrigin = xrOriginObject.AddComponent<XROrigin>();
         camera.transform.position = new Vector3(0f, 1.6f, -5f);
-        camera.transform.rotation = Quaternion.Euler(8f, 0f, 0f);
+        camera.transform.rotation = Quaternion.Euler(5f, 0f, 0f);
         camera.transform.SetParent(xrOriginObject.transform, true);
         xrOrigin.Camera = camera;
         var simulator = xrOriginObject.AddComponent<XRInteractionSimulator>();
         simulator.cameraTransform = camera.transform;
+        xrOriginObject.AddComponent<DesktopSimulationLocomotion>().Configure(xrOriginObject.transform, camera.transform);
         var selectAction = inputActions.FindAction("XRInteraction/Select", true);
-        CreateXrInteractor(xrOriginObject.transform, interactionManager, selectAction, "Left Direct Interactor", new Vector3(-0.18f, -0.18f, 0.35f), true);
-        CreateXrInteractor(xrOriginObject.transform, interactionManager, selectAction, "Right Ray Interactor", new Vector3(0.18f, -0.18f, 0.35f), false);
+        CreateXrInteractor(camera.transform, interactionManager, selectAction, "Left Direct Interactor", new Vector3(-0.18f, -0.18f, 0.35f), true);
+        CreateXrInteractor(camera.transform, interactionManager, selectAction, "Right Ray Interactor", new Vector3(0.12f, -0.08f, 0.1f), false);
         var directionalLight = Object.FindFirstObjectByType<Light>();
-        if (directionalLight != null) directionalLight.lightmapBakeType = LightmapBakeType.Baked;
+        if (directionalLight != null)
+        {
+            directionalLight.lightmapBakeType = LightmapBakeType.Baked;
+            directionalLight.intensity = 1.15f;
+            directionalLight.color = new Color(1f, 0.88f, 0.68f);
+        }
 
-        var guidancePanel = CreatePanel("GuidancePanel", new Vector3(-2.5f, 2.3f, 0.25f), new Vector3(3.8f, 1.1f, 1f), new Color(0.06f, 0.08f, 0.12f, 1f));
-        var guidanceObject = CreateText("Guidance", new Vector3(-2.5f, 2.3f, 0f), 0.22f, Color.white);
+        var guidancePanel = CreatePanel("GuidancePanel", new Vector3(-1.65f, 2.25f, 0.25f), new Vector3(2.7f, 0.48f, 1f), new Color(0.04f, 0.1f, 0.16f, 1f));
+        var guidanceObject = CreateText("Guidance", new Vector3(-2.85f, 2.25f, 0f), 0.028f, Color.white);
         var guidance = guidanceObject.AddComponent<AccessibleGuidancePresenter>();
         guidance.Configure(guidanceObject.GetComponent<TextMesh>(), guidancePanel);
-        var feedbackPanel = CreatePanel("FeedbackPanel", new Vector3(-2.5f, 1.65f, 0.25f), new Vector3(3.8f, 0.65f, 1f), new Color(0.12f, 0.12f, 0.12f, 1f));
-        var feedbackObject = CreateText("Feedback", new Vector3(-2.5f, 1.7f, 0f), 0.18f, Color.yellow);
+        var feedbackPanel = CreatePanel("FeedbackPanel", new Vector3(-1.65f, 1.72f, 0.25f), new Vector3(2.7f, 0.4f, 1f), new Color(0.16f, 0.09f, 0.05f, 1f));
+        var feedbackObject = CreateText("Feedback", new Vector3(-2.6f, 1.72f, 0f), 0.023f, new Color(1f, 0.88f, 0.45f));
         var feedback = feedbackObject.AddComponent<AccessibleFeedbackPresenter>();
-        var feedbackIndicator = CreatePrimitive("FeedbackIndicator", PrimitiveType.Quad, new Vector3(-3.8f, 1.7f, 0.15f), new Vector3(0.3f, 0.3f, 1f), new Color(0.85f, 0.45f, 0.15f));
-        var feedbackSymbol = CreateText("FeedbackSymbol", new Vector3(-3.55f, 1.7f, 0f), 0.11f, Color.white).GetComponent<TextMesh>();
+        var feedbackIndicator = CreatePrimitive("FeedbackIndicator", PrimitiveType.Quad, new Vector3(-2.9f, 1.72f, 0.15f), new Vector3(0.18f, 0.18f, 1f), new Color(0.85f, 0.45f, 0.15f));
+        var feedbackSymbol = CreateText("FeedbackSymbol", new Vector3(-2.75f, 1.72f, 0f), 0.018f, Color.white).GetComponent<TextMesh>();
         feedback.Configure(feedbackObject.GetComponent<TextMesh>(), feedbackIndicator.GetComponent<Renderer>(), feedbackSymbol);
-        var contextPanel = CreatePanel("CulturalContextPanel", new Vector3(2.5f, 2.3f, 0.25f), new Vector3(3.8f, 1.7f, 1f), new Color(0.04f, 0.12f, 0.16f, 1f));
-        var contextObject = CreateText("CulturalContext", new Vector3(2.5f, 2.3f, 0f), 0.16f, Color.cyan);
+        var contextPanel = CreatePanel("CulturalContextPanel", new Vector3(1.75f, 2.05f, 0.25f), new Vector3(2.6f, 0.85f, 1f), new Color(0.05f, 0.17f, 0.2f, 1f));
+        var contextObject = CreateText("CulturalContext", new Vector3(0.6f, 2.05f, 0f), 0.02f, new Color(0.75f, 0.95f, 1f));
         var context = contextObject.AddComponent<CulturalContextPanelPresenter>();
         context.Configure(contextObject.GetComponent<TextMesh>(), contextPanel);
         contextPanel.SetActive(false);
-        var overviewPanel = CreatePanel("ExperienceOverviewPanel", new Vector3(0f, 3.25f, 0.25f), new Vector3(5.8f, 1.1f, 1f), new Color(0.08f, 0.08f, 0.14f, 1f));
-        var overview = CreateText("ExperienceOverview", new Vector3(-2.6f, 3.25f, 0f), 0.18f, Color.white).AddComponent<ExperienceOverviewPresenter>();
+        var overviewPanel = CreatePanel("ExperienceOverviewPanel", new Vector3(0f, 3.1f, 0.25f), new Vector3(3.8f, 0.6f, 1f), new Color(0.12f, 0.08f, 0.18f, 1f));
+        var overview = CreateText("ExperienceOverview", new Vector3(-1.7f, 3.1f, 0f), 0.026f, Color.white).AddComponent<ExperienceOverviewPresenter>();
         overview.Configure(overview.GetComponent<TextMesh>(), overviewPanel);
-        var controlsPanel = CreatePanel("ControlsPanel", new Vector3(-2.5f, 0.8f, 0.25f), new Vector3(3.8f, 0.55f, 1f), new Color(0.08f, 0.08f, 0.08f, 1f));
-        var controls = CreateText("Controls", new Vector3(-2.5f, 0.8f, 0f), 0.13f, Color.white).AddComponent<SessionControlsPresenter>();
+        var controlsPanel = CreatePanel("ControlsPanel", new Vector3(0f, 0.55f, 0.25f), new Vector3(3.9f, 0.3f, 1f), new Color(0.06f, 0.06f, 0.08f, 1f));
+        var controls = CreateText("Controls", new Vector3(-1.8f, 0.55f, 0f), 0.016f, new Color(0.9f, 0.9f, 0.9f)).AddComponent<SessionControlsPresenter>();
+        root.AddComponent<DesktopSimulationHelpOverlay>();
 
-        var floor = CreatePrimitive("Floor", PrimitiveType.Plane, Vector3.zero, new Vector3(1.5f, 1f, 1.5f), new Color(0.35f, 0.25f, 0.15f));
-        var table = CreatePrimitive("Table", PrimitiveType.Cube, new Vector3(0f, 0.75f, 0f), new Vector3(3.2f, 1.2f, 1.5f), new Color(0.35f, 0.18f, 0.08f));
+        var floor = CreatePrimitive("Floor", PrimitiveType.Plane, Vector3.zero, new Vector3(1.5f, 1f, 1.5f), new Color(0.2f, 0.34f, 0.22f));
+        var table = CreatePrimitive("Table", PrimitiveType.Cube, new Vector3(0f, 0.75f, 0f), new Vector3(3.2f, 1.2f, 1.5f), new Color(0.36f, 0.16f, 0.06f));
         GameObjectUtility.SetStaticEditorFlags(floor, StaticEditorFlags.ContributeGI | StaticEditorFlags.BatchingStatic);
         GameObjectUtility.SetStaticEditorFlags(table, StaticEditorFlags.ContributeGI | StaticEditorFlags.BatchingStatic);
         var ingredient = InstantiateTarget("Assets/_Project/Prefabs/Ingredients/Ingredient_Greybox.prefab", "Ingredient", new Vector3(-0.8f, 1.55f, 0f));
@@ -202,7 +211,7 @@ public static class Iteration001EditorBootstrap
         var button = CreatePrimitive(name, PrimitiveType.Cube, position, new Vector3(0.45f, 0.12f, 0.08f), new Color(0.15f, 0.5f, 0.65f));
         var interactable = button.AddComponent<XRSimpleInteractable>();
         button.AddComponent<CulturalContextTrigger>().Configure(bootstrapper, elementId, interactable);
-        var label = CreateText(name + "Label", position + new Vector3(-0.18f, 0f, -0.06f), 0.08f, Color.white).GetComponent<TextMesh>();
+        var label = CreateText(name + "Label", position + new Vector3(-0.18f, 0f, -0.06f), 0.014f, Color.white).GetComponent<TextMesh>();
         label.text = "INFO";
     }
 
@@ -266,7 +275,11 @@ public static class Iteration001EditorBootstrap
         gameObject.name = name;
         gameObject.transform.position = position;
         gameObject.transform.localScale = scale;
-        gameObject.GetComponent<Renderer>().sharedMaterial.color = color;
+        var renderer = gameObject.GetComponent<Renderer>();
+        var shader = Shader.Find("Universal Render Pipeline/Unlit") ?? Shader.Find("Standard");
+        var material = new Material(shader) { color = color };
+        if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
+        renderer.sharedMaterial = material;
         return gameObject;
     }
 
@@ -282,7 +295,7 @@ public static class Iteration001EditorBootstrap
         var text = gameObject.AddComponent<TextMesh>();
         text.text = string.Empty;
         text.characterSize = size;
-        text.fontSize = 60;
+        text.fontSize = 36;
         text.anchor = TextAnchor.MiddleLeft;
         text.color = color;
         return gameObject;
