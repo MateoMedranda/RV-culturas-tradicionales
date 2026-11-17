@@ -17,11 +17,13 @@ namespace RvCulturas.Presentation.UI
         {
             if (panel != null) panel.SetActive(true);
             if (textMesh != null) textMesh.text = title + "\n" + explanation + "\nFuente: " + sourceReference + "\n[Cerrar contexto]";
+            DesktopSimulationHelpOverlay.PublishContext(title + ": " + explanation + " Fuente: " + sourceReference);
         }
 
         public void Close()
         {
             if (panel != null) panel.SetActive(false);
+            DesktopSimulationHelpOverlay.ClearContext();
         }
     }
 }

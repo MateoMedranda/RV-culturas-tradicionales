@@ -21,6 +21,7 @@ namespace RvCulturas.Presentation.UI
             if (textMesh != null) textMesh.text = message + (guidance == null ? string.Empty : "\n" + guidance.Text);
             if (visualIndicator != null) visualIndicator.material.color = accepted ? new Color(0.2f, 0.65f, 0.35f) : new Color(0.85f, 0.45f, 0.15f);
             if (statusSymbol != null) statusSymbol.text = accepted ? "✓ CORRECTO" : "↻ REVISA";
+            DesktopSimulationHelpOverlay.PublishFeedback(message, accepted);
         }
     }
 }

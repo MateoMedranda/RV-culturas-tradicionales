@@ -19,6 +19,7 @@ namespace RvCulturas.Presentation.UI
             if (guidance == null) return;
             if (panel != null) panel.SetActive(true);
             if (textMesh != null) textMesh.text = guidance.Text;
+            DesktopSimulationHelpOverlay.PublishGuidance(guidance.Text);
         }
 
         public void Hide()

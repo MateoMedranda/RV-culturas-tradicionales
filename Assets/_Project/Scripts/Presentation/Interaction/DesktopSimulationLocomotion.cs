@@ -21,7 +21,9 @@ namespace RvCulturas.Presentation.Interaction
 
         private void Update()
         {
-            if (rig == null || view == null || XRSettings.isDeviceActive) return;
+            // XR Device Simulator reports a virtual device as active in the Editor. The desktop
+            // fallback must remain available there, but never run in a real device build.
+            if (rig == null || view == null || (!Application.isEditor && XRSettings.isDeviceActive)) return;
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
 

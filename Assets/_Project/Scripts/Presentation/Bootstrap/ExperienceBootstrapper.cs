@@ -39,6 +39,7 @@ namespace RvCulturas.Presentation.Bootstrap
         private void Awake()
         {
             if (experienceAsset == null) return;
+            DesktopSimulationSceneRepair.Apply(gameObject);
             experience = experienceAsset.ToDomain();
             overviewPresenter?.PresentIntroduction(experience.Title, experience.CulturalContext);
         }
