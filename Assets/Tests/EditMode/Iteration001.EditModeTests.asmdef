@@ -1,0 +1,8 @@
+{
+  "name": "Iteration001.EditModeTests",
+  "rootNamespace": "RvCulturas.Tests.EditMode",
+  "references": ["RvCulturas.Domain", "RvCulturas.Application", "RvCulturas.Infrastructure"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

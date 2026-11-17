@@ -1,0 +1,14 @@
+{
+  "name": "RvCulturas.Infrastructure",
+  "rootNamespace": "RvCulturas.Infrastructure",
+  "references": ["RvCulturas.Domain", "RvCulturas.Application"],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
