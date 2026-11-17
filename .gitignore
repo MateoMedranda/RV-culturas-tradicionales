@@ -30,3 +30,4 @@ Thumbs.db
 # Local previews and temporary artifacts
 /tmp/
 /tmp-unity-*.log
+/TestResults-*.xml

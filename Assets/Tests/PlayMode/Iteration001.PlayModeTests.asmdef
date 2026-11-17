@@ -1,7 +1,7 @@
 {
   "name": "Iteration001.PlayModeTests",
   "rootNamespace": "RvCulturas.Tests.PlayMode",
-  "references": ["RvCulturas.Domain", "RvCulturas.Application", "RvCulturas.Infrastructure", "RvCulturas.Presentation"],
+  "references": ["RvCulturas.Domain", "RvCulturas.Application", "RvCulturas.Infrastructure", "RvCulturas.Presentation", "Unity.InputSystem", "Unity.XR.Interaction.Toolkit"],
   "includePlatforms": [],
   "optionalUnityReferences": ["TestAssemblies"],
   "autoReferenced": false

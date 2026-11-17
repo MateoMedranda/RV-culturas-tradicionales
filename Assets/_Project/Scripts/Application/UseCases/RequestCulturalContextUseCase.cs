@@ -10,7 +10,7 @@ namespace RvCulturas.Application.UseCases
             var element = experience.GetElement(elementId);
             if (element == null) return new ExperienceResult(ExperienceResultKind.Rejected, "No hay información para este elemento.", null, session.CurrentStepOrdinal);
             var guidance = new GuidanceContent(element.Explanation, string.Empty, "contexto", string.Empty, true);
-            return new ExperienceResult(ExperienceResultKind.ContextPresented, element.DisplayName, guidance, session.CurrentStepOrdinal);
+            return new ExperienceResult(ExperienceResultKind.ContextPresented, element.DisplayName, guidance, session.CurrentStepOrdinal, element.SourceReference);
         }
     }
 }

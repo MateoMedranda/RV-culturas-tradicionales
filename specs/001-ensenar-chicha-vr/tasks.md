@@ -182,3 +182,13 @@ XR Device Simulator. Debe confirmarse con el checkpoint de US1 antes de añadir 
 - Todas las tareas usan el formato obligatorio de checklist, ID, etiqueta de historia cuando aplica y rutas concretas.
 - Las tareas de pruebas se incluyen por los requisitos de la constitución; su ejecución debe preceder a declarar cada checkpoint completo.
 - Cada checkpoint conserva un commit descriptivo. Si falta visor, fuente cultural o validación con personas usuarias, registrar el bloqueo sin declarar aceptación.
+
+## Phase 8: Convergence
+
+- [X] T057 CRITICAL Configurar en Assets/_Project/Scenes/Iteration001.unity un XR Origin con controladores e interactores directo y ray, vinculados al simulador, y ampliar Assets/Tests/PlayMode/GuidedPreparationFlowTests.cs para comprobar la selección XR real por US1/AC2 y Constitución II (missing).
+- [X] T058 Implementar una presentación de introducción y un cierre con resumen de la secuencia y mensaje respetuoso de preservación cultural en Assets/_Project/Scripts/Presentation/UI/ y Assets/_Project/Scenes/Iteration001.unity por FR-001 y FR-008 (partial).
+- [X] T059 Integrar fichas culturales activables desde los elementos, con fuente visible y cierre explícito que mantenga el paso activo, en Assets/_Project/Scripts/Presentation/UI/CulturalContextPanelPresenter.cs, Assets/_Project/Scenes/Iteration001.unity y Assets/Tests/PlayMode/CulturalContextFlowTests.cs por FR-006 y US2/AC1-AC2 (partial).
+- [X] T060 Reemplazar los accesos Input.GetKeyDown de Assets/_Project/Scripts/Presentation/UI/SessionControlsPresenter.cs por las acciones de Assets/XR/Input/Iteration001.inputactions y enlazarlas con el simulador XR por plan: Input System/XRI (contradicts).
+- [X] T061 Instanciar y configurar los paneles de guía y retroalimentación accesibles en la escena con fondo opaco, texto legible e indicador/símbolo visible que no dependa solo de color o audio; ampliar Assets/Tests/PlayMode/AudioIndependentGuidanceTests.cs por FR-007, FR-011 y Constitución II (partial).
+- [X] T062 Añadir pruebas Edit Mode de conversión de ExperienceDefinitionAsset, PreparationStepAsset, CulturalElementAsset, AssetManifestAsset y ScriptableObjectExperienceRepository en Assets/Tests/EditMode/ por Constitución III (missing).
+- [ ] T063 Completar la validación de aceptación sin publicar contenido no revisado: registrar revisión cultural y procedencia verificadas, prueba en visor a 72 Hz y prueba con el grupo prioritario en los documentos de docs/evidence/ por SC-004, SC-006, plan: validación de aceptación y Constitución IV-V (missing).

@@ -14,6 +14,7 @@ namespace RvCulturas.Presentation.Bootstrap
         [SerializeField] private AccessibleGuidancePresenter guidancePresenter;
         [SerializeField] private AccessibleFeedbackPresenter feedbackPresenter;
         [SerializeField] private CulturalContextPanelPresenter contextPresenter;
+        [SerializeField] private ExperienceOverviewPresenter overviewPresenter;
         [SerializeField] private SessionControlsPresenter controlsPresenter;
         [SerializeField] private XrInteractionAdapter interactionAdapter;
 
@@ -24,12 +25,13 @@ namespace RvCulturas.Presentation.Bootstrap
         private readonly SessionControlUseCases controlsUseCases = new SessionControlUseCases();
         private ExperienceDefinition experience;
 
-        public void Configure(ExperienceDefinitionAsset source, AccessibleGuidancePresenter guidance, AccessibleFeedbackPresenter feedback, CulturalContextPanelPresenter context, SessionControlsPresenter controls, XrInteractionAdapter adapter)
+        public void Configure(ExperienceDefinitionAsset source, AccessibleGuidancePresenter guidance, AccessibleFeedbackPresenter feedback, CulturalContextPanelPresenter context, ExperienceOverviewPresenter overview, SessionControlsPresenter controls, XrInteractionAdapter adapter)
         {
             experienceAsset = source;
             guidancePresenter = guidance;
             feedbackPresenter = feedback;
             contextPresenter = context;
+            overviewPresenter = overview;
             controlsPresenter = controls;
             interactionAdapter = adapter;
         }
@@ -38,7 +40,7 @@ namespace RvCulturas.Presentation.Bootstrap
         {
             if (experienceAsset == null) return;
             experience = experienceAsset.ToDomain();
-            if (controlsPresenter != null) controlsPresenter.Configure(this);
+            overviewPresenter?.PresentIntroduction(experience.Title, experience.CulturalContext);
         }
 
         private void Start()
@@ -57,10 +59,15 @@ namespace RvCulturas.Presentation.Bootstrap
             foreach (var target in interactionAdapter.Targets) target.InteractionRequested -= HandleInteraction;
         }
 
-        public void StartExperience() => Present(startUseCase.Execute(session, experience));
+        public void StartExperience()
+        {
+            overviewPresenter?.Hide();
+            Present(startUseCase.Execute(session, experience));
+        }
         public void RepeatGuidance() => Present(controlsUseCases.RepeatGuidance(session, experience));
         public void RestartExperience() => Present(controlsUseCases.Restart(session));
         public void ExitExperience() => Present(controlsUseCases.Exit(session));
+        public void CloseCulturalContext() => contextPresenter?.Close();
 
         public void TogglePause()
         {
@@ -71,7 +78,7 @@ namespace RvCulturas.Presentation.Bootstrap
         public void ShowCulturalContext(string elementId)
         {
             var result = contextUseCase.Execute(session, experience, elementId);
-            if (result.Kind == ExperienceResultKind.ContextPresented && contextPresenter != null) contextPresenter.Present(result.Message, result.Guidance.Text);
+            if (result.Kind == ExperienceResultKind.ContextPresented && contextPresenter != null) contextPresenter.Present(result.Message, result.Guidance.Text, result.SourceReference);
             else Present(result);
         }
 
@@ -86,6 +93,7 @@ namespace RvCulturas.Presentation.Bootstrap
             if (result.Guidance != null) guidancePresenter?.Present(result.Guidance);
             var accepted = result.Kind == ExperienceResultKind.Accepted || result.Kind == ExperienceResultKind.Completed || result.Kind == ExperienceResultKind.Started;
             feedbackPresenter?.Present(result.Message, result.Guidance, accepted);
+            if (result.Kind == ExperienceResultKind.Completed) overviewPresenter?.PresentClosing("Completaste la secuencia de práctica y recibiste retroalimentación visual.");
         }
     }
 }

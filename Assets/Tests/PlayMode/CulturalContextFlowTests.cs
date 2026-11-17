@@ -20,6 +20,9 @@ namespace RvCulturas.Tests.PlayMode
             bootstrapper.ShowCulturalContext("ingredient");
             var context = GameObject.Find("CulturalContext").GetComponent<TextMesh>().text;
             Assert.That(context, Does.Contain("Ingrediente de práctica"));
+            Assert.That(context, Does.Contain("Fuente:"));
+            Assert.That(GameObject.Find("Guidance").GetComponent<TextMesh>().text, Is.EqualTo(before));
+            bootstrapper.CloseCulturalContext();
             Assert.That(GameObject.Find("Guidance").GetComponent<TextMesh>().text, Is.EqualTo(before));
         }
     }

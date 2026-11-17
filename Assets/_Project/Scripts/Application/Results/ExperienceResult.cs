@@ -6,17 +6,19 @@ namespace RvCulturas.Application.Results
 
     public class ExperienceResult
     {
-        public ExperienceResult(ExperienceResultKind kind, string message, GuidanceContent guidance, int currentStepOrdinal)
+        public ExperienceResult(ExperienceResultKind kind, string message, GuidanceContent guidance, int currentStepOrdinal, string sourceReference = null)
         {
             Kind = kind;
             Message = message;
             Guidance = guidance;
             CurrentStepOrdinal = currentStepOrdinal;
+            SourceReference = sourceReference;
         }
 
         public ExperienceResultKind Kind { get; }
         public string Message { get; }
         public GuidanceContent Guidance { get; }
         public int CurrentStepOrdinal { get; }
+        public string SourceReference { get; }
     }
 }

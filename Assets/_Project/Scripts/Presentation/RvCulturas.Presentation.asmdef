@@ -1,7 +1,7 @@
 {
   "name": "RvCulturas.Presentation",
   "rootNamespace": "RvCulturas.Presentation",
-  "references": ["RvCulturas.Domain", "RvCulturas.Application", "RvCulturas.Infrastructure", "Unity.XR.CoreUtils", "Unity.XR.Interaction.Toolkit"],
+  "references": ["RvCulturas.Domain", "RvCulturas.Application", "RvCulturas.Infrastructure", "Unity.InputSystem", "Unity.XR.CoreUtils", "Unity.XR.Interaction.Toolkit"],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

@@ -8,13 +8,27 @@
         { "name": "Start", "type": "Button", "id": "5e0f043d-10de-4ca0-b0d8-5de667a066ba", "expectedControlType": "Button" },
         { "name": "Pause", "type": "Button", "id": "b04ba2a9-22b4-45f2-bc09-1dd8b92b6126", "expectedControlType": "Button" },
         { "name": "Restart", "type": "Button", "id": "d69b8ab0-6b90-4829-9e76-4d8c960c7df6", "expectedControlType": "Button" },
-        { "name": "RepeatGuidance", "type": "Button", "id": "a4fb5790-45a9-46a3-9ed5-272caf7e5d51", "expectedControlType": "Button" }
+        { "name": "RepeatGuidance", "type": "Button", "id": "a4fb5790-45a9-46a3-9ed5-272caf7e5d51", "expectedControlType": "Button" },
+        { "name": "CloseContext", "type": "Button", "id": "dce987d1-ae0a-41e1-9e34-a8c8bfab62b1", "expectedControlType": "Button" }
       ],
       "bindings": [
         { "name": "", "id": "2933e06d-a9d3-4479-a8d5-0ab7061a7cd4", "path": "<Keyboard>/space", "action": "Start", "isComposite": false, "isPartOfComposite": false },
         { "name": "", "id": "48c4e949-2802-4cd3-9fd6-fa282b0a65d4", "path": "<Keyboard>/p", "action": "Pause", "isComposite": false, "isPartOfComposite": false },
         { "name": "", "id": "cd2b9581-f477-4051-af3c-0eec6d0367e8", "path": "<Keyboard>/r", "action": "Restart", "isComposite": false, "isPartOfComposite": false },
-        { "name": "", "id": "5a21bbf3-ecf9-4bbf-b4b7-6c9b2806c8a3", "path": "<Keyboard>/g", "action": "RepeatGuidance", "isComposite": false, "isPartOfComposite": false }
+        { "name": "", "id": "5a21bbf3-ecf9-4bbf-b4b7-6c9b2806c8a3", "path": "<Keyboard>/g", "action": "RepeatGuidance", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "d3a775a4-54dd-4cf7-af7a-48070981ed8f", "path": "<Keyboard>/c", "action": "CloseContext", "isComposite": false, "isPartOfComposite": false }
+      ]
+    },
+    {
+      "name": "XRInteraction",
+      "id": "7fd2c820-570f-4cf9-a78d-74cc8b2a73a1",
+      "actions": [
+        { "name": "Select", "type": "Button", "id": "a6151288-0725-4c6b-9b89-d67f0f920407", "expectedControlType": "Button" }
+      ],
+      "bindings": [
+        { "name": "", "id": "dab6db7b-9f86-4053-b80e-bfa597d1249e", "path": "<Mouse>/leftButton", "action": "Select", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "0e426c36-8080-41f0-b6db-a124090ef04e", "path": "<XRController>{LeftHand}/triggerPressed", "action": "Select", "isComposite": false, "isPartOfComposite": false },
+        { "name": "", "id": "5f7a3801-3a66-4a4b-a74d-d3c2bb2f6231", "path": "<XRController>{RightHand}/triggerPressed", "action": "Select", "isComposite": false, "isPartOfComposite": false }
       ]
     }
   ],

@@ -13,10 +13,10 @@ namespace RvCulturas.Presentation.UI
             panel = configuredPanel;
         }
 
-        public void Present(string title, string explanation)
+        public void Present(string title, string explanation, string sourceReference)
         {
             if (panel != null) panel.SetActive(true);
-            if (textMesh != null) textMesh.text = title + "\n" + explanation;
+            if (textMesh != null) textMesh.text = title + "\n" + explanation + "\nFuente: " + sourceReference + "\n[Cerrar contexto]";
         }
 
         public void Close()

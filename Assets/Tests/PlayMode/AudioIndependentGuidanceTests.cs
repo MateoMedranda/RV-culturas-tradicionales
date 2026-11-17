@@ -22,6 +22,7 @@ namespace RvCulturas.Tests.PlayMode
             GameObject.Find("Ingredient").GetComponent<InteractionTargetPresenter>().AttemptInteraction();
             Assert.That(GameObject.Find("Guidance").GetComponent<TextMesh>().text, Is.Not.Empty);
             Assert.That(GameObject.Find("Feedback").GetComponent<TextMesh>().text, Does.Contain("Completa primero"));
+            Assert.That(GameObject.Find("FeedbackSymbol").GetComponent<TextMesh>().text, Does.Contain("REVISA"));
         }
     }
 }
