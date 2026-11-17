@@ -4,6 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 using RvCulturas.Presentation.UI;
+using RvCulturas.Presentation.Bootstrap;
 
 namespace RvCulturas.Presentation.Interaction
 {
@@ -24,6 +25,8 @@ namespace RvCulturas.Presentation.Interaction
         public static void Apply(GameObject root)
         {
             if (root.GetComponent<DesktopSimulationHelpOverlay>() == null) root.AddComponent<DesktopSimulationHelpOverlay>();
+            var bootstrapper = root.GetComponent<ExperienceBootstrapper>();
+            var desktopInteraction = root.GetComponent<DesktopFirstPersonInteractor>() ?? root.AddComponent<DesktopFirstPersonInteractor>();
             ApplyColor("Floor", new Color(0.16f, 0.31f, 0.19f));
             ApplyColor("Table", new Color(0.38f, 0.15f, 0.045f));
             ApplyColor("Ingredient", new Color(0.93f, 0.66f, 0.12f));
@@ -42,6 +45,7 @@ namespace RvCulturas.Presentation.Interaction
             var camera = Camera.main;
             if (camera != null)
             {
+                desktopInteraction.Configure(bootstrapper, camera);
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = new Color(0.07f, 0.14f, 0.23f);
                 var origin = GameObject.Find("XR Origin (Simulation Ready)");
@@ -67,6 +71,9 @@ namespace RvCulturas.Presentation.Interaction
                 var direct = Object.FindFirstObjectByType<XRDirectInteractor>();
                 if (direct != null && UnityEngine.Application.isEditor) direct.enabled = false;
             }
+
+            var controls = Object.FindFirstObjectByType<SessionControlsPresenter>();
+            if (controls != null && UnityEngine.Application.isEditor) controls.enabled = false;
         }
 
         private static void ApplyColor(string objectName, Color color)

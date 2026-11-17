@@ -27,6 +27,7 @@ namespace RvCulturas.Presentation.Interaction
 
         private void OnMouseDown()
         {
+            if (DesktopFirstPersonInteractor.IsActive) return;
             AttemptInteraction();
         }
     }
