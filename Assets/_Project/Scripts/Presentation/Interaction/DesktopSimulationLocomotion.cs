@@ -12,28 +12,34 @@ namespace RvCulturas.Presentation.Interaction
         [SerializeField] private float moveSpeed = 2.4f;
         [SerializeField] private float lookSensitivity = 0.12f;
         private float pitch;
+        private float yaw;
 
         public void Configure(Transform configuredRig, Transform configuredView)
         {
             rig = configuredRig;
             view = configuredView;
+            if (view == null) return;
+            pitch = NormalizeAngle(view.eulerAngles.x);
+            yaw = view.eulerAngles.y;
         }
 
         private void Update()
         {
             // XR Device Simulator reports a virtual device as active in the Editor. The desktop
             // fallback must remain available there, but never run in a real device build.
-            if (rig == null || view == null || (!UnityEngine.Application.isEditor && XRSettings.isDeviceActive)) return;
+            if (view == null || (!UnityEngine.Application.isEditor && XRSettings.isDeviceActive)) return;
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
 
+            var forward = Vector3.ProjectOnPlane(view.forward, Vector3.up).normalized;
+            var right = Vector3.ProjectOnPlane(view.right, Vector3.up).normalized;
             var direction = Vector3.zero;
-            if (keyboard.wKey.isPressed) direction += Vector3.forward;
-            if (keyboard.sKey.isPressed) direction += Vector3.back;
-            if (keyboard.aKey.isPressed) direction += Vector3.left;
-            if (keyboard.dKey.isPressed) direction += Vector3.right;
+            if (keyboard.wKey.isPressed) direction += forward;
+            if (keyboard.sKey.isPressed) direction -= forward;
+            if (keyboard.aKey.isPressed) direction -= right;
+            if (keyboard.dKey.isPressed) direction += right;
             if (direction.sqrMagnitude > 0f)
-                rig.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.Self);
+                view.position += direction.normalized * moveSpeed * Time.deltaTime;
 
             var mouse = Mouse.current;
             if (mouse == null) return;
@@ -42,9 +48,9 @@ namespace RvCulturas.Presentation.Interaction
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 var delta = mouse.delta.ReadValue() * lookSensitivity;
-                rig.Rotate(Vector3.up, delta.x, Space.World);
+                yaw += delta.x;
                 pitch = Mathf.Clamp(pitch - delta.y, -45f, 45f);
-                view.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+                view.rotation = Quaternion.Euler(pitch, yaw, 0f);
             }
             else
             {
@@ -52,5 +58,7 @@ namespace RvCulturas.Presentation.Interaction
                 Cursor.visible = true;
             }
         }
+
+        private static float NormalizeAngle(float value) => value > 180f ? value - 360f : value;
     }
 }

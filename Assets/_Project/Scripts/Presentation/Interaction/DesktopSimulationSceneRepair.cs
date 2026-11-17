@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 using RvCulturas.Presentation.UI;
 
 namespace RvCulturas.Presentation.Interaction
@@ -34,6 +35,9 @@ namespace RvCulturas.Presentation.Interaction
 
             foreach (var name in LegacyText) HideRenderer(name);
             foreach (var name in LegacyPanels) HideObject(name);
+            HideObject("IngredientInfo");
+            HideObject("BowlInfo");
+            HideObject("UtensilInfo");
 
             var camera = Camera.main;
             if (camera != null)
@@ -57,6 +61,8 @@ namespace RvCulturas.Presentation.Interaction
                     ray.transform.localRotation = Quaternion.identity;
                     var controller = ray.GetComponent<ActionBasedController>();
                     if (controller != null && UnityEngine.Application.isEditor) controller.enabled = false;
+                    var lineVisual = ray.GetComponent<XRInteractorLineVisual>();
+                    if (lineVisual != null && UnityEngine.Application.isEditor) lineVisual.enabled = false;
                 }
                 var direct = Object.FindFirstObjectByType<XRDirectInteractor>();
                 if (direct != null && UnityEngine.Application.isEditor) direct.enabled = false;

@@ -10,6 +10,7 @@ namespace RvCulturas.Presentation.UI
         private GUIStyle bodyStyle;
         private GUIStyle headingStyle;
         private GUIStyle contentStyle;
+        private GUIStyle crosshairStyle;
         private string overview = "Pulsa ESPACIO para comenzar la práctica.";
         private string guidance = "Selecciona el utensilio indicado sobre la mesa.";
         private string feedback = "Preparado para iniciar.";
@@ -35,25 +36,27 @@ namespace RvCulturas.Presentation.UI
             EnsureStyles();
             var width = Mathf.Min(Screen.width - 32, 1120);
             GUI.backgroundColor = new Color(0.04f, 0.08f, 0.14f, 0.96f);
-            GUI.Box(new Rect(16, 16, width, 104), GUIContent.none);
-            GUI.Label(new Rect(32, 24, width - 32, 28), "SIMULADOR DE ESCRITORIO — RECORRIDO DE PRÁCTICA", titleStyle);
-            GUI.Label(new Rect(32, 62, width - 32, 46), "W A S D: mover · mantener clic derecho y mover el ratón: mirar en primera persona · clic izquierdo: seleccionar · Espacio: iniciar · P: pausa · G: repetir · R: reiniciar · C: cerrar ficha", bodyStyle);
+            GUI.Box(new Rect(16, 16, width, 138), GUIContent.none);
+            GUI.Label(new Rect(32, 25, width - 32, 54), "PRÁCTICA GUIADA · SIMULADOR DE ESCRITORIO", titleStyle);
+            GUI.Label(new Rect(32, 83, width - 32, 60), "W A S D: caminar · mantener clic derecho y mover ratón: mirar en primera persona · apunta con la mira central y usa clic izquierdo: seleccionar · Espacio: iniciar", bodyStyle);
 
-            GUI.Box(new Rect(16, 136, width * 0.56f, 172), GUIContent.none);
-            GUI.Label(new Rect(32, 150, width * 0.56f - 32, 32), "GUÍA", headingStyle);
-            GUI.Label(new Rect(32, 188, width * 0.56f - 32, 72), guidance, contentStyle);
-            GUI.Label(new Rect(32, 265, width * 0.56f - 32, 35), feedbackAccepted ? "✓ " + feedback : "↻ " + feedback, contentStyle);
+            GUI.Box(new Rect(16, 172, width * 0.56f, 198), GUIContent.none);
+            GUI.Label(new Rect(32, 185, width * 0.56f - 32, 52), "GUÍA", headingStyle);
+            GUI.Label(new Rect(32, 237, width * 0.56f - 32, 90), guidance, contentStyle);
+            GUI.Label(new Rect(32, 326, width * 0.56f - 32, 38), feedbackAccepted ? "✓ " + feedback : "↻ " + feedback, contentStyle);
 
-            GUI.Box(new Rect(16 + width * 0.59f, 136, width * 0.41f, 172), GUIContent.none);
-            GUI.Label(new Rect(32 + width * 0.59f, 150, width * 0.41f - 32, 32), "RECORRIDO", headingStyle);
-            GUI.Label(new Rect(32 + width * 0.59f, 188, width * 0.41f - 32, 100), overview, contentStyle);
+            GUI.Box(new Rect(16 + width * 0.59f, 172, width * 0.41f, 198), GUIContent.none);
+            GUI.Label(new Rect(32 + width * 0.59f, 185, width * 0.41f - 32, 52), "RECORRIDO", headingStyle);
+            GUI.Label(new Rect(32 + width * 0.59f, 237, width * 0.41f - 32, 120), overview, contentStyle);
 
             if (!string.IsNullOrWhiteSpace(context))
             {
-                GUI.Box(new Rect(16, 324, width, 130), GUIContent.none);
-                GUI.Label(new Rect(32, 338, width - 32, 32), "CONTEXTO CULTURAL", headingStyle);
-                GUI.Label(new Rect(32, 376, width - 32, 66), context, contentStyle);
+                GUI.Box(new Rect(16, 388, width, 150), GUIContent.none);
+                GUI.Label(new Rect(32, 402, width - 32, 52), "CONTEXTO CULTURAL", headingStyle);
+                GUI.Label(new Rect(32, 454, width - 32, 72), context, contentStyle);
             }
+
+            GUI.Label(new Rect(Screen.width * 0.5f - 20f, Screen.height * 0.5f - 26f, 40f, 52f), "+", crosshairStyle);
         }
 
         private void EnsureStyles()
@@ -61,25 +64,32 @@ namespace RvCulturas.Presentation.UI
             if (titleStyle != null) return;
             titleStyle = new GUIStyle(GUI.skin.label)
             {
-                fontSize = 48,
+                fontSize = 46,
                 fontStyle = FontStyle.Bold,
                 normal = { textColor = new Color(1f, 0.8f, 0.25f) }
             };
             bodyStyle = new GUIStyle(GUI.skin.label)
             {
-                fontSize = 32,
+                fontSize = 30,
                 wordWrap = true,
                 normal = { textColor = Color.white }
             };
             headingStyle = new GUIStyle(titleStyle)
             {
-                fontSize = 42,
+                fontSize = 38,
                 normal = { textColor = new Color(0.45f, 0.9f, 1f) }
             };
             contentStyle = new GUIStyle(bodyStyle)
             {
-                fontSize = 40,
+                fontSize = 36,
                 normal = { textColor = new Color(0.96f, 0.96f, 0.96f) }
+            };
+            crosshairStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = 44,
+                fontStyle = FontStyle.Bold,
+                alignment = TextAnchor.MiddleCenter,
+                normal = { textColor = Color.white }
             };
         }
 
