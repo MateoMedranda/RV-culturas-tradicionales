@@ -12,6 +12,23 @@ namespace RvCulturas.Tests.PlayMode
     public sealed class KitchenPlayableFlowTests
     {
         [UnityTest]
+        public IEnumerator CornV2HasCompleteVisualAndWindowHasNoOpaqueWall()
+        {
+            SceneManager.LoadScene("ChichaKitchen"); yield return null;
+            var p = Object.FindFirstObjectByType<KitchenLessonPresenter>();
+            var corn = p.targets[0];
+            Assert.That(corn.GetComponentsInChildren<MeshFilter>().Length, Is.EqualTo(1), "El maíz debe usar la malla unida de cornV2.");
+            var b = corn.VisualBounds;
+            Assert.That(Mathf.Max(b.size.x,b.size.y,b.size.z), Is.InRange(0.31f,0.33f));
+            Assert.That(corn.GetComponent<BoxCollider>().bounds.Contains(b.center), Is.True);
+            var hits = Physics.RaycastAll(new Vector3(-2.4f,2.05f,2.4f),Vector3.forward,0.8f);
+            foreach (var hit in hits) Assert.That(hit.collider.GetComponent<Renderer>(), Is.Null, "Una superficie opaca bloquea la ventana.");
+            var house = GameObject.Find("Casa de paja");
+            Assert.That(house, Is.Not.Null);
+            Assert.That(house.GetComponentsInChildren<Camera>(), Is.Empty);
+            Assert.That(house.GetComponentsInChildren<Light>(), Is.Empty);
+        }
+        [UnityTest]
         public IEnumerator SixAnimatedActionsRejectErrorsPauseCompleteAndReset()
         {
             SceneManager.LoadScene("ChichaKitchen"); yield return null;

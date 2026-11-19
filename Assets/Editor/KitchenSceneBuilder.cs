@@ -80,8 +80,7 @@ public static class KitchenSceneBuilder
         var root = new GameObject("RECORRIDO · Preparación guiada");
         var presenter = root.AddComponent<KitchenLessonPresenter>(); presenter.lesson = lesson; presenter.liquid = liquid;
         var targets = new List<KitchenTarget>();
-        var corn = Import("corn", new Vector3(-1.75f, 0.99f, 0.5f), 0.27f, "Object_2");
-        foreach (var r in corn.GetComponentsInChildren<Renderer>()) r.sharedMaterial = gold;
+        var corn = KitchenAssetUpgrade.ImportCorn(new Vector3(-1.75f, 0.99f, 0.5f));
         targets.Add(Target(corn, "corn", "1 · Maíz", new Vector3(-0.15f, 1.32f, 1.02f)));
         var jug = Cylinder("Jarra de agua", new Vector3(-1.05f, 1.13f, 0.5f), new Vector3(0.21f, 0.17f, 0.21f), Mat("Cerámica azul", new Color(0.15f, 0.4f, 0.51f)));
         targets.Add(Target(jug, "water", "2 · Agua", new Vector3(-0.4f, 1.38f, 1.02f)));
@@ -108,6 +107,7 @@ public static class KitchenSceneBuilder
         var xrPanel = Box("Guía XR", new Vector3(0, 1.94f, 1.35f), new Vector3(2.1f, 0.95f, 0.03f), dark, false);
         var xrText = Label("Guía XR texto", new Vector3(-0.95f, 2.34f, 1.32f), 0.04f, cream).GetComponent<TextMesh>(); xrText.anchor = TextAnchor.UpperLeft; xrText.alignment = TextAlignment.Left;
         xrPanel.transform.SetParent(xrText.transform, true); presenter.xrGuide = xrText;
+        KitchenAssetUpgrade.CreateWindow(environment);
         AssetDatabase.SaveAssets();
         EditorSceneManager.SaveScene(scene, ScenePath);
         var builds = EditorBuildSettings.scenes.Where(s => s.path != ScenePath).ToList(); builds.Insert(0, new EditorBuildSettingsScene(ScenePath, true)); EditorBuildSettings.scenes = builds.ToArray();

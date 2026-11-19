@@ -26,12 +26,19 @@ No hay límite de tiempo ni penalización por errores. Las indicaciones esencial
 
 El recorrido de maíz, agua, panela y especias es ilustrativo. No establece una receta ecuatoriana universal ni instrucciones reales de fermentación, cocción o consumo. Estado de contenido: Draft, pendiente de validación cultural. Se debe acordar comunidad, variante e ingredientes antes de presentar el contenido como enseñanza validada.
 
-- Maíz: Decorative Corn 3D Scan — Arkify 3D. CC BY 4.0. Fuente: https://sketchfab.com/3d-models/decorative-corn-3d-scan-3d6b09c1a2e243dd9fd27240d252eb31. Se seleccionó una parte y se simplificó su material.
+- Maíz: Decorative Corn 3D Scan — Arkify 3D. CC BY 4.0. Fuente: https://sketchfab.com/3d-models/decorative-corn-3d-scan-3d6b09c1a2e243dd9fd27240d252eb31. Ahora se usa `Assets/Models/corn/cornV2.glb`, unido/exportado por el usuario, completo y con su material original. Medición en Unity: 1.000.000 de triángulos; requiere reducción antes de aceptar rendimiento en visor.
 - Manos: Free Pack - VR Hands (Rigged) — PolyOne Studio. CC BY 4.0. Fuente: https://sketchfab.com/3d-models/free-pack-vr-hands-rigged-b3b8309e59c748e3956531c8f57dd233. Malla horneada y separada en dos manos para representación; sin animación individual de dedos.
 - Estante: Wooden Shelf With Spices — volvor. CC BY 4.0. Fuente: https://sketchfab.com/3d-models/wooden-shelf-with-spices-f922f299aacf4c1791fb3eb983c6de9c.
 - Fruta decorativa: Lowpoly Fruits & Vegetables — Loïc Norgeot. CC BY 4.0. Fuente: https://sketchfab.com/3d-models/lowpoly-fruits-vegetables-d3be8fed96eb48be88b47bbe8d2951e1.
 - Textura local de panela: procedencia/licencia no suministrada; pendiente de registrar antes de distribución.
 - El vaso peruano de Assets/Models/vaso no se incorpora: es CC BY-NC y no se presenta como utensilio ecuatoriano.
+- Casa de paja: `Assets/Models/casaPaja/casa_paja.fbx`, aportada por el usuario; fuente/licencia pendientes de registrar. Se utiliza la malla `atap_house` y su textura incrustada extraída. Se excluyen las cámaras, luces y la pieza suelta `horizontal stick` del archivo. Su presencia es escenográfica y no constituye una atribución cultural validada.
+
+## Actualización de maíz y ventana
+
+`RV Culturas > Update Corn V2 and Exterior Window` actualiza únicamente esos elementos de ChichaKitchen, sin reconstruir el resto de la cocina. Conserva el KitchenTarget y el destino del maíz y ajusta su collider. La ventana sustituye el panel opaco anterior por cuatro tramos de pared, marco, alféizar y una barrera invisible de colisión. La casa está en el exterior, sobre terreno con camino. `Build Chicha Kitchen` también incorpora estos cambios para futuras reconstrucciones.
+
+Verificación de la actualización: tres pruebas PlayMode de KitchenPlayableFlowTests correctas: maíz completo/collider y abertura sin pared opaca; manos/colisión de mesa; recorrido de seis acciones con pausa y reinicio. Se revisó una captura desde la cámara principal mostrando la casa texturizada y la mazorca completa. El millón de triángulos del maíz sigue pendiente de optimización.
 
 Las licencias originales se conservan junto a los modelos. Estos créditos deben acompañar cualquier distribución; no basta con mantenerlos únicamente en el repositorio.
 
