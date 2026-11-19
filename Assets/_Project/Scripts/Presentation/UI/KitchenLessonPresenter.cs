@@ -197,6 +197,7 @@ namespace RvCulturas.Presentation.UI
                 if (GUI.Button(new Rect(width - 356, height - 160, 300, 54), "Pausar / continuar · P", button)) Pause();
                 if (GUI.Button(new Rect(width - 356, height - 96, 300, 54), "Reiniciar · R", button)) ResetLesson();
             }
+            Panel(new Rect(24, 100, width - 48, 42));
             GUI.Label(new Rect(30, 104, width - 60, 34), "WASD / flechas: caminar   ·   clic derecho + ratón: mirar   ·   clic / E: usar   ·   1–6: selección asistida", small);
             if (hovered != null && session.Lifecycle == ExperienceLifecycle.Active)
             {
