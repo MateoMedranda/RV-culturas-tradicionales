@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wooden Shelf With Spices
+* source:	https://sketchfab.com/3d-models/wooden-shelf-with-spices-f922f299aacf4c1791fb3eb983c6de9c
+* author:	volvor (https://sketchfab.com/volvor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wooden Shelf With Spices" (https://sketchfab.com/3d-models/wooden-shelf-with-spices-f922f299aacf4c1791fb3eb983c6de9c) by volvor (https://sketchfab.com/volvor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
