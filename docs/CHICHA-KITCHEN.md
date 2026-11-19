@@ -10,6 +10,11 @@ Escena nueva: `Assets/_Project/Scenes/ChichaKitchen.unity`. La escena Iteration0
 4. Apunta y pulsa clic izquierdo o E. Alternativa sin puntería: teclas 1–6.
 5. Sigue maíz, agua, panela, especias, mezclar, servir. Una selección incorrecta conserva el progreso.
 6. P pausa/reanuda, R reinicia, F1 abre accesibilidad. Se puede ampliar texto, cambiar altura sentado/de pie y silenciar confirmaciones.
+7. H abre/cierra la ayuda y Tab despliega/contrae los detalles del paso. Escape cierra primero ayuda/accesibilidad y, si no están abiertas, pausa.
+
+La interfaz de escritorio utiliza una tarjeta compacta abajo a la izquierda, con la instrucción principal siempre visible. La explicación completa está en Detalles. La ayuda y reinicio no ocupan paneles permanentes: se consultan mediante Ayuda o Pausa. Las confirmaciones correctas se muestran durante cuatro segundos; las correcciones permanecen hasta resolverlas. El tamaño extra grande adapta la altura del contenido. Los clics solo se bloquean sobre los paneles dibujados, no sobre una franja completa de pantalla. Ayuda y accesibilidad bloquean el movimiento mientras están abiertas.
+
+Verificación de interfaz compacta: compilación sin errores, tres pruebas PlayMode de la cocina correctas y revisión de capturas en modo normal y extra grande con detalles. Capturas: `Captures/compact-hud-final.png` y `Captures/compact-hud-accessible-final.png`.
 
 No hay límite de tiempo ni penalización por errores. Las indicaciones esenciales son textuales y el amarillo de selección es complementario al nombre. Las colisiones están en suelo, paredes, mesa y objetos; no existe movimiento de cámara impuesto.
 
