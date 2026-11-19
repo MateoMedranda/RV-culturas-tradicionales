@@ -154,7 +154,7 @@ public static class KitchenSceneBuilder
         if (prefab == null) throw new InvalidOperationException("Importa glTFast y espera a que Unity importe: " + folder);
         var root = UnityEngine.Object.Instantiate(prefab); root.name = folder;
         if (node != null) foreach (var r in root.GetComponentsInChildren<Renderer>()) if (r.name != node) r.gameObject.SetActive(false);
-        root.transform.rotation = folder == "spices" ? Quaternion.Euler(0, 90, 0) : Quaternion.identity;
+        root.transform.rotation = folder == "spices" ? Quaternion.Euler(0, -90, 0) : Quaternion.identity;
         var renderers = root.GetComponentsInChildren<Renderer>(); var bounds = renderers[0].bounds; foreach (var r in renderers) bounds.Encapsulate(r.bounds);
         root.transform.localScale *= size / Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
         bounds = renderers[0].bounds; foreach (var r in renderers) bounds.Encapsulate(r.bounds);
