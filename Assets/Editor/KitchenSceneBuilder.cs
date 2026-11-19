@@ -38,6 +38,9 @@ public static class KitchenSceneBuilder
         RenderSettings.ambientSkyColor = new Color(0.65f, 0.75f, 0.79f);
         RenderSettings.ambientEquatorColor = new Color(0.5f, 0.47f, 0.37f);
         RenderSettings.ambientGroundColor = new Color(0.22f, 0.18f, 0.13f);
+        var skyboxMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/Skybox/Skybox-01.mat");
+        if (skyboxMat != null) RenderSettings.skybox = skyboxMat;
+        else Debug.LogWarning("KitchenSceneBuilder: no se encontró Assets/Skybox/Skybox-01.mat; Skybox omitido.");
         var sunlight = new GameObject("Luz de mañana").AddComponent<Light>();
         sunlight.type = LightType.Directional; sunlight.intensity = 0.95f; sunlight.color = new Color(1, 0.95f, 0.85f);
         sunlight.transform.rotation = Quaternion.Euler(48, -35, 0); sunlight.shadows = LightShadows.Soft;
@@ -114,7 +117,7 @@ public static class KitchenSceneBuilder
         SceneView.lastActiveSceneView?.LookAt(new Vector3(0, 1.1f, 0.8f), Quaternion.Euler(22, 0, 0), 5);
         Debug.Log("ChichaKitchen creada: 6 acciones, modelos locales, manos, colisiones y accesibilidad.");
     }
-    private static void AdditionalSetup(this Camera camera) { camera.backgroundColor = new Color(0.57f, 0.72f, 0.75f); camera.clearFlags = CameraClearFlags.SolidColor; camera.gameObject.AddComponent<AudioListener>(); }
+    private static void AdditionalSetup(this Camera camera) { camera.backgroundColor = new Color(0.57f, 0.72f, 0.75f); camera.clearFlags = CameraClearFlags.Skybox; camera.gameObject.AddComponent<AudioListener>(); }
     private static KitchenTarget Target(GameObject go, string id, string label, Vector3 destination)
     {
         go.name = label;
